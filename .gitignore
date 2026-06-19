@@ -1,0 +1,47 @@
+# Entorno
+.env
+.env.local
+.env.*.local
+
+# Datos (no subir al repo — pueden ser grandes)
+data/
+*.json
+!**/package.json
+!**/tsconfig.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+.next/
+out/
+.turbo/
+
+# ChromaDB
+chroma_db/
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Claude Code — local settings contienen rutas del sistema
+.claude/settings.local.json
+.claude/memory/
