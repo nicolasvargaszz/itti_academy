@@ -19,6 +19,16 @@ Cuando el banco actualiza su documentación, basta con re-correr la ingesta — 
 
 ---
 
+## Screenshots
+
+![Uendi chat — conversación inicial](frontend/image/captura_uendi1.png)
+
+![Uendi chat — respuesta con fuentes](frontend/image/captura_uendi2.png)
+
+![Uendi chat — consulta de producto bancario](frontend/image/capturauendi3.png)
+
+---
+
 ## Demo
 
 ```
