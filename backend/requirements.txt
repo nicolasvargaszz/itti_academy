@@ -1,0 +1,17 @@
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+pydantic==2.7.4
+pydantic-settings==2.3.4
+
+# RAG pipeline
+chromadb==0.5.0
+sentence-transformers==3.0.1
+langchain-text-splitters==0.2.2
+groq==0.9.0
+
+# Ingestion
+requests==2.32.3
+beautifulsoup4==4.12.3
+
+# Utilities
+python-dotenv==1.0.1
