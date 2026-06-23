@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Required for ColorOrb conic-gradient animation */
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root {
+  --color-bg: #fafaf9;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f4f4f5;
+  --color-primary: #00b37e;
+  --color-primary-dark: #009168;
+  --color-primary-muted: #d1faf0;
+  --color-text: #18181b;
+  --color-text-muted: #71717a;
+  --color-text-inverse: #fafaf9;
+  --color-border: #e4e4e7;
+  --color-border-focus: #00b37e;
+  --color-success: #16a34a;
+  --color-error: #dc2626;
+  --color-user-bubble: #18181b;
+  --color-bot-bubble: #f4f4f5;
+  --color-citation-bg: #f0fdf9;
+  --color-citation-border: #6ee7ca;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ─── ColorOrb ──────────────────────────────────────────────────────────────
+   CSS vars are set as inline styles per-element. They cascade to ::before
+   and ::after, so the pseudo-elements pick them up without styled-jsx.
+   ──────────────────────────────────────────────────────────────────────── */
+.color-orb {
+  display: grid;
+  grid-template-areas: "stack";
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  transform: scale(1.1);
+}
+
+.color-orb::before,
+.color-orb::after {
+  content: "";
+  display: block;
+  grid-area: stack;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: translateZ(0);
+}
+
+.color-orb::before {
+  background:
+    conic-gradient(
+      from calc(var(--angle) * 2) at 25% 70%,
+      var(--accent3, oklch(78% 0.14 280)),
+      transparent 20% 80%,
+      var(--accent3, oklch(78% 0.14 280))
+    ),
+    conic-gradient(
+      from calc(var(--angle) * 2) at 45% 75%,
+      var(--accent2, oklch(80% 0.12 200)),
+      transparent 30% 60%,
+      var(--accent2, oklch(80% 0.12 200))
+    ),
+    conic-gradient(
+      from calc(var(--angle) * -3) at 80% 20%,
+      var(--accent1, oklch(75% 0.15 162)),
+      transparent 40% 60%,
+      var(--accent1, oklch(75% 0.15 162))
+    ),
+    conic-gradient(
+      from calc(var(--angle) * 2) at 15% 5%,
+      var(--accent2, oklch(80% 0.12 200)),
+      transparent 10% 90%,
+      var(--accent2, oklch(80% 0.12 200))
+    ),
+    conic-gradient(
+      from calc(var(--angle) * 1) at 20% 80%,
+      var(--accent1, oklch(75% 0.15 162)),
+      transparent 10% 90%,
+      var(--accent1, oklch(75% 0.15 162))
+    ),
+    conic-gradient(
+      from calc(var(--angle) * -2) at 85% 10%,
+      var(--accent3, oklch(78% 0.14 280)),
+      transparent 20% 80%,
+      var(--accent3, oklch(78% 0.14 280))
+    );
+  box-shadow: inset var(--base, oklch(95% 0.02 162)) 0 0 var(--shadow, 2px) calc(var(--shadow, 2px) * 0.2);
+  filter: blur(var(--blur, 4px)) contrast(var(--contrast, 1.5));
+  animation: orb-spin var(--spin-duration, 20s) linear infinite;
+}
+
+.color-orb::after {
+  background-image: radial-gradient(
+    circle at center,
+    var(--base, oklch(95% 0.02 162)) var(--dot, 0.1px),
+    transparent var(--dot, 0.1px)
+  );
+  background-size: calc(var(--dot, 0.1px) * 2) calc(var(--dot, 0.1px) * 2);
+  mix-blend-mode: overlay;
+}
+
+@keyframes orb-spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .color-orb::before {
+    animation: none;
+  }
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+.chat-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
